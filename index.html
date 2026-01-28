@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felicia Falck | Singer-Songwriter & Worship Leader</title>
+    <meta name="description" content="Official website of Felicia Falck. Scandinavian folk-pop, worship music, lyrics, chords, and creative workshops. Based in Sweden.">
+    
+    <!-- Google Fonts: Cormorant (Serif) for headings, Montserrat (Sans) for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- DESIGN TOKENS --- */
+        :root {
+            /* Palette: Earthy, Nordic, Soft */
+            --bg-body: #F9F8F6;       /* Warm white/cream */
+            --bg-card: #FFFFFF;
+            --text-main: #2C2C2C;     /* Soft black */
+            --text-muted: #666666;
+            --accent-green: #466246;  /* Extracted from HEMSIDA 2.png analysis */
+            --accent-wood: #8B5E3C;   /* Warm Brown */
+            --accent-sand: #E8E6E1;   /* Beige/Sand for footers/bgs */
+            
+            /* Typography */
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            
+            /* Spacing */
+            --container-width: 1200px;
+            --section-spacing: 100px;
+        }
+
+        /* --- RESET & BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text-main);
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; font-weight: 600; }
+
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--text-main);
+            color: #fff;
+            border: 1px solid var(--text-main);
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--text-main);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+        .btn-outline:hover {
+            background-color: #fff;
+            color: var(--text-main);
+        }
+
+        .btn-text {
+            padding: 0;
+            color: var(--accent-wood);
+            border-bottom: 1px solid transparent;
+        }
+        .btn-text:hover {
+            border-bottom-color: var(--accent-wood);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(249, 248, 246, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-green);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .lang-switch {
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--accent-green);
+            padding: 6px 14px;
+            border-radius: 50px;
+        }
+        .lang-switch span.active { color: var(--accent-wood); font-weight: 700; }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- HERO --- */
+        .hero {
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+            margin-bottom: var(--section-spacing);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.8);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-out;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding-bottom: var(--section-spacing);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-style: italic;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+        }
+
+        /* --- ABOUT (Split) --- */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+        
+        .about-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px; left: -20px;
+            width: 100%; height: 100%;
+            border: 1px solid var(--accent-green);
+            z-index: -1;
+        }
+
+        .about-image {
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            /* Ensure the URKRAFTEN image fits well */
+            aspect-ratio: 4/5; 
+            object-fit: cover;
+        }
+
+        .quote {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--accent-wood);
+            border-left: 3px solid var(--accent-green);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        /* --- MUSIC / DISCOGRAPHY --- */
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .album-card {
+            background: var(--bg-card);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+
+        .album-card:hover { transform: translateY(-5px); }
+
+        .album-art {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 2px;
+        }
+
+        .album-meta { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+
+        /* --- RESOURCES / CHORDS (The SEO Hub) --- */
+        .resources-section {
+            background-color: var(--accent-sand);
+            padding: 100px 0;
+            position: relative;
+            background-image: url('https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/d1a237d0-43fc-45d7-ad1c-971d55007348/Long+picture.jpg?format=2500w');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        
+        .resources-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(232, 230, 225, 0.92); /* Sand color with high opacity */
+        }
+
+        .resources-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .resource-list {
+            background: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .resource-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        .resource-item:last-child { border-bottom: none; }
+        .resource-item:hover { background-color: #fcfcfc; }
+
+        .song-title { font-weight: 600; color: var(--text-main); }
+        .song-meta { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .download-btn {
+            color: var(--accent-green);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- GALLERY (Instagram Style) --- */
+        .gallery-section {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #f4f4f4;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            opacity: 0.95;
+        }
+
+        .video-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M24,18 L48,32 L24,46 Z' fill='white'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        /* --- CONTACT --- */
+        .contact-wrapper {
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 80px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .contact-wrapper h2, .contact-wrapper p { color: #fff; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #222;
+            color: #999;
+            padding: 60px 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 { color: #fff; font-size: 1rem; margin-bottom: 20px; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--font-sans); }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col a:hover { color: #fff; }
+
+        .social-icons a { margin-right: 15px; font-size: 1.2rem; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) { 
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); } 
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .split-section { grid-template-columns: 1fr; gap: 40px; }
+            .contact-wrapper { padding: 40px 20px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; } 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Felicia Falck</a>
+                
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#music">Music</a></li>
+                    <li><a href="#workshops">Workshops</a></li>
+                    <li><a href="#resources">Lyrics & Chords</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div class="lang-switch">
+                        <span class="active">EN</span> | <span>SV</span>
+                    </div>
+                    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/dc9fa139-8de5-453f-bb7f-4dfdb7de0f9f/HEMSIDA+2.png" alt="Felicia Falck Background" class="hero-bg">
+        
+        <div class="hero-content">
+            <span class="hero-subtitle">Singer-Songwriter & Worship Leader</span>
+            <h1>Authentic. Nordic. <br>Soulful.</h1>
+            <div style="margin-top: 30px;">
+                <a href="#music" class="btn btn-outline">Listen Now</a>
+                <a href="#contact" class="btn btn-primary" style="background: white; color: black; margin-left: 15px;">Book Event</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="split-section">
+                <div class="about-text">
+                    <h2>More than a performance</h2>
+                    <p class="quote">"My goal is always connection. Connection to the music, to each other, and to something greater."</p>
+                    <p>Welcome. I am Felicia Falck, a musician and worship leader based in Sweden. My music is rooted in the Scandinavian folk tradition—honest, stripped-back, and close to nature.</p>
+                    <p>Whether I am leading a workshop on creative expression or performing an intimate acoustic set, I invite you into a space of vulnerability and hope.</p>
+                    <br>
+                    <a href="#" class="btn-text">Read full biography <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="about-image-wrapper">
+                    <!-- Updated with URKRAFTEN FOTO -->
+                    <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/9f04b767-23ec-4a0e-8698-f2a5f8ebccae/URKRAFTEN+FOTO.jpg?format=1500w" alt="Felicia Falck Portrait" class="about-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discography -->
+    <section id="music">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Releases</h2>
+                <p>Songs of faith, doubt, and the beauty of the ordinary.</p>
+            </div>
+
+            <div class="music-grid">
+                <!-- Album 1: Using Spotify Image -->
+                <article class="album-card">
+                    <img src="https://image-cdn-fa.spotifycdn.com/image/ab6761610000f178ce4ae090ef5985cf7259a2e0" alt="Sound of Home" class="album-art">
+                    <div class="album-meta">Single • 2023</div>
+                    <h3>Sound of Home</h3>
+                    <div style="margin-top: 15px;">
+                        <a href="#" class="btn-text">Stream on Spotify</a>
+                    </div>
+                </article>
+
+                <!-- Album 2: Using URKRAFTEN Variant -->
+                <article class="album-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/9f04b767-23ec-4a0e-8698-f2a5f8ebccae/URKRAFTEN+FOTO.jpg?format=750w" alt="Nordic Hymns" class="album-art">
+                    <div class="album-meta">EP • 2022</div>
+                    <h3>Nordic Hymns</h3>
+                    <div style="margin-top: 15px;">
+                        <a href="#" class="btn-text">Stream on Spotify</a>
+                    </div>
+                </article>
+
+                <!-- Album 3: Using Concert Photo -->
+                <article class="album-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/cadbca33-3239-40a8-9fe5-cf89dd2b4fea/DSC01474.jpg?format=750w" alt="Worship Sessions" class="album-art">
+                    <div class="album-meta">Live Album</div>
+                    <h3>Worship Sessions</h3>
+                    <div style="margin-top: 15px;">
+                        <a href="#" class="btn-text">Stream on Spotify</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources / SEO Magnet -->
+    <section id="resources" class="resources-section">
+        <div class="resources-overlay"></div>
+        <div class="container resources-content">
+            <div class="section-header">
+                <h2>Lyrics & Chords</h2>
+                <p>Resources for worship leaders and musicians. Free to download.</p>
+            </div>
+
+            <div class="resource-list">
+                <!-- Item 1 -->
+                <div class="resource-item">
+                    <div>
+                        <div class="song-title">Hjärtat vet (The Heart Knows)</div>
+                        <div class="song-meta">Key: D Major | Swedish</div>
+                    </div>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> PDF Chord Chart</a>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="resource-item">
+                    <div>
+                        <div class="song-title">Come to the Water</div>
+                        <div class="song-meta">Key: G Major | English</div>
+                    </div>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> PDF Chord Chart</a>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="resource-item">
+                    <div>
+                        <div class="song-title">Vila i dig</div>
+                        <div class="song-meta">Key: C Major | Swedish</div>
+                    </div>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> PDF Chord Chart</a>
+                </div>
+                 <!-- Item 4 -->
+                 <div class="resource-item">
+                    <div>
+                        <div class="song-title">Morning Light</div>
+                        <div class="song-meta">Key: E Major | English</div>
+                    </div>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> PDF Chord Chart</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-primary">View Full Library</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery / Instagram -->
+    <section id="gallery" class="gallery-section">
+        <div class="container" style="max-width: 1400px;">
+            <div class="section-header">
+                <h2 style="font-size: 1.8rem; letter-spacing: 0.1em; text-transform: uppercase;">@feliciafalck</h2>
+                <p>Follow the journey on Instagram</p>
+            </div>
+
+            <div class="gallery-grid">
+                
+                <!-- 1. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DUBxG27jT-O/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1769550892831-2QE4TYG63T75E2CGQ6M0/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 2. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DT3WNk0DdWc/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1769208482748-ULLLWLLH6NLYJSM75DXT/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 3. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DTscHLIiNz9/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1768842073648-9UITO5JV72WBAWJLKDN0/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 4. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DTTDlGsCC8Y/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1767985470668-X11QA9XEK5XS75PQT9W4/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 5. Image (Standard) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/p/DTSaboYCNJZ/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1767958026151-EGYOWS61NZMS09ZP1S6B/image-asset.jpeg" alt="Sweet love is out now">
+                    </a>
+                </div>
+
+                <!-- 6. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DShYm4uEdsu/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1766312620292-EYMDW9AYKX72BEFVH2DX/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 7. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DSVopaIDWml/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1765920858072-G2C4YIEBHNHVBV0DQNB0/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 8. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DSFmaGkCNUB/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1765382545045-RUEKKPVP71800SXYGJ2U/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 9. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DRdAMg2DeqI/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1764019709730-1T2GVMW0L6FMRVHSH8WD/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 10. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DRPDtLmiJqN/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1763551972076-LUU7GZ19BR566250DB1E/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 11. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DRFx4VpjWML/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1763242222813-AQWCERDN16P32RZN6NWR/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 12. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DQ__nYXCK_d/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1763047777128-8W4KACUGVUZ42I0DEHDS/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 13. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DQ7UOcxjTpc/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1762892570713-C9FGV5260P6277AK94N7/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 14. Image (Standard) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/p/DQE6hbHCOiA/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1761065047910-Y05TLUGQPR979Q2RVZQO/image-asset.jpeg" alt="The Creative Soul 1:1 Sessions">
+                    </a>
+                </div>
+
+                <!-- 15. Image (Standard) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/p/DQEa2eqCKQe/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1761050002782-OTFWUKA67PQAHIQWSQJX/image-asset.jpeg" alt="Concert in Onderdijk">
+                    </a>
+                </div>
+
+                <!-- 16. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DPzMRNzDZUq/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1760473504212-WI81WVW6AV2TS2Z6GRVS/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 17. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DPgg94zCMbi/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1759847087369-3H8G18NHLD50039KFKDT/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 18. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DPY4U6piG7i/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1759596597484-AO4NCAPG6RON42OCLIDY/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+                <!-- 19. Image (Standard) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/p/DON8L45iG0U/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1757074428659-2TBJPITONSRY64H18S6W/image-asset.jpeg" alt="Get It Out Song">
+                    </a>
+                </div>
+
+                <!-- 20. Reel (Video) -->
+                <div class="gallery-item">
+                    <a href="https://www.instagram.com/reel/DOGrjk1iDkd/" target="_blank">
+                        <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1756836546446-8XJ71JK6PPD4JG9HBK7L/image-asset.jpeg" alt="Instagram Reel">
+                        <div class="video-icon"></div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <h2>Let's Create Together</h2>
+                <p style="margin-bottom: 30px; opacity: 0.9;">Available for concerts, worship leading, and songwriting workshops in 2024.</p>
+                <a href="mailto:contact@feliciafalck.com" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Felicia Falck</h4>
+                    <p>Singer-Songwriter & Worship Leader based in Sweden.</p>
+                    <div class="social-icons" style="margin-top: 20px;">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-spotify"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#music">Music</a></li>
+                        <li><a href="#workshops">Workshops</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Join the journey. Updates on new music and events.</p>
+                    <form onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                        <input type="email" placeholder="Your email address" style="padding: 10px; border: none; width: 100%; margin-bottom: 10px;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 0.7rem; padding: 10px;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #333; padding-top: 20px; text-align: center; font-size: 0.75rem;">
+                <p>&copy; 2024 Felicia Falck. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for smooth scrolling behavior for demo purposes
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile Menu Toggle Logic
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '80px';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = '#F9F8F6';
+                navLinks.style.padding = '20px';
+                navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+
+</body>
+</html>
