@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felicia Falck | Singer-Songwriter & Worship Leader</title>
-    <meta name="description" content="Official website of Felicia Falck. Scandinavian folk-pop, worship music, lyrics, chords, and creative workshops. Based in Sweden.">
+    <title>Felicia Falck | Nordic Folk & Medicine Music</title>
+    <meta name="description" content="Official website of Felicia Falck. Nordic Folk, Medicine Music, and Vispop from Bohuslän, Sweden.">
     
     <!-- Google Fonts: Cormorant (Serif) for headings, Montserrat (Sans) for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,6 +77,8 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+            border-radius: 2px;
+            border: none;
         }
 
         .btn-primary {
@@ -250,7 +252,6 @@
         .about-image {
             border-radius: 2px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            /* Ensure the URKRAFTEN image fits well */
             aspect-ratio: 4/5; 
             object-fit: cover;
         }
@@ -291,6 +292,50 @@
         }
 
         .album-meta { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+
+        /* --- OFFERINGS (NEW SECTION) --- */
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .offering-item {
+            background: #fff;
+            padding: 40px 30px;
+            border: 1px solid #eee;
+            transition: border-color 0.3s;
+        }
+
+        .offering-item:hover {
+            border-color: var(--accent-green);
+        }
+
+        .offering-icon {
+            font-size: 2rem;
+            color: var(--accent-wood);
+            margin-bottom: 20px;
+        }
+
+        .offering-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .offering-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .offering-ideal {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            font-weight: 500;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
 
         /* --- RESOURCES / CHORDS (The SEO Hub) --- */
         .resources-section {
@@ -459,7 +504,7 @@
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#music">Music</a></li>
-                    <li><a href="#workshops">Workshops</a></li>
+                    <li><a href="#experiences">Live & Workshops</a></li>
                     <li><a href="#resources">Lyrics & Chords</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -479,8 +524,8 @@
         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/dc9fa139-8de5-453f-bb7f-4dfdb7de0f9f/HEMSIDA+2.png" alt="Felicia Falck Background" class="hero-bg">
         
         <div class="hero-content">
-            <span class="hero-subtitle">Singer-Songwriter & Worship Leader</span>
-            <h1>Authentic. Nordic. <br>Soulful.</h1>
+            <span class="hero-subtitle">Singer-Songwriter | Medicine Music | Vispop</span>
+            <h1>Nordic Folk & <br>Medicine Music <br>from Bohuslän</h1>
             <div style="margin-top: 30px;">
                 <a href="#music" class="btn btn-outline">Listen Now</a>
                 <a href="#contact" class="btn btn-primary" style="background: white; color: black; margin-left: 15px;">Book Event</a>
@@ -493,15 +538,14 @@
         <div class="container">
             <div class="split-section">
                 <div class="about-text">
-                    <h2>More than a performance</h2>
-                    <p class="quote">"My goal is always connection. Connection to the music, to each other, and to something greater."</p>
-                    <p>Welcome. I am Felicia Falck, a musician and worship leader based in Sweden. My music is rooted in the Scandinavian folk tradition—honest, stripped-back, and close to nature.</p>
-                    <p>Whether I am leading a workshop on creative expression or performing an intimate acoustic set, I invite you into a space of vulnerability and hope.</p>
+                    <h2>Songs from the Granite & the Heart</h2>
+                    <p class="quote">"Music that bridges the gap between Nordic melancholy and the warmth of Latin American rhythms."</p>
+                    <p>Felicia Falck is a Swedish singer-songwriter known for her crystalline voice and heartfelt storytelling. Rooted in the granite landscapes of North Bohuslän, she crafts music that transforms the delicate and the raw into something that touches the soul.</p>
+                    <p>Her sound is born from a deep connection to nature and her travels in Colombia, weaving together the tradition of Swedish "Visor" with the spiritual depth of medicine music. Whether performing intimate acoustic sets or facilitating vocal workshops, Felicia creates a space of healing and authentic expression.</p>
                     <br>
                     <a href="#" class="btn-text">Read full biography <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="about-image-wrapper">
-                    <!-- Updated with URKRAFTEN FOTO -->
                     <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/9f04b767-23ec-4a0e-8698-f2a5f8ebccae/URKRAFTEN+FOTO.jpg?format=1500w" alt="Felicia Falck Portrait" class="about-image">
                 </div>
             </div>
@@ -512,40 +556,80 @@
     <section id="music">
         <div class="container">
             <div class="section-header">
-                <h2>Latest Releases</h2>
-                <p>Songs of faith, doubt, and the beauty of the ordinary.</p>
+                <h2>Discography</h2>
+                <p>From acoustic folk to ecstatic dance remixes.</p>
             </div>
 
             <div class="music-grid">
-                <!-- Album 1: Using Spotify Image -->
+                <!-- Album 1: Uppe i Norden -->
                 <article class="album-card">
-                    <img src="https://image-cdn-fa.spotifycdn.com/image/ab6761610000f178ce4ae090ef5985cf7259a2e0" alt="Sound of Home" class="album-art">
-                    <div class="album-meta">Single • 2023</div>
-                    <h3>Sound of Home</h3>
+                    <!-- Placeholder for Uppe i Norden art if specific one not available, using scenic/folk vibe -->
+                    <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/cadbca33-3239-40a8-9fe5-cf89dd2b4fea/DSC01474.jpg?format=750w" alt="Uppe i Norden" class="album-art">
+                    <div class="album-meta">Album • 2020</div>
+                    <h3>Uppe i Norden</h3>
                     <div style="margin-top: 15px;">
                         <a href="#" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
 
-                <!-- Album 2: Using URKRAFTEN Variant -->
+                <!-- Album 2: Dreaming -->
                 <article class="album-card">
-                    <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/9f04b767-23ec-4a0e-8698-f2a5f8ebccae/URKRAFTEN+FOTO.jpg?format=750w" alt="Nordic Hymns" class="album-art">
-                    <div class="album-meta">EP • 2022</div>
-                    <h3>Nordic Hymns</h3>
+                    <img src="https://image-cdn-fa.spotifycdn.com/image/ab6761610000f178ce4ae090ef5985cf7259a2e0" alt="Dreaming EP" class="album-art">
+                    <div class="album-meta">EP • 2019</div>
+                    <h3>Dreaming</h3>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Produced by Marcus Berg</p>
                     <div style="margin-top: 15px;">
                         <a href="#" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
 
-                <!-- Album 3: Using Concert Photo -->
+                <!-- Album 3: Come Closer -->
                 <article class="album-card">
-                    <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/cadbca33-3239-40a8-9fe5-cf89dd2b4fea/DSC01474.jpg?format=750w" alt="Worship Sessions" class="album-art">
-                    <div class="album-meta">Live Album</div>
-                    <h3>Worship Sessions</h3>
+                    <!-- Placeholder using URKRAFTEN variant for single -->
+                    <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/9f04b767-23ec-4a0e-8698-f2a5f8ebccae/URKRAFTEN+FOTO.jpg?format=750w" alt="Come Closer" class="album-art">
+                    <div class="album-meta">Single • Remix</div>
+                    <h3>Come Closer</h3>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Mose Remix</p>
                     <div style="margin-top: 15px;">
                         <a href="#" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Experiences & Workshops (NEW SECTION from EPK) -->
+    <section id="experiences" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Live Experiences</h2>
+                <p>Performances and workshops for festivals, studios, and cultural centers.</p>
+            </div>
+
+            <div class="offerings-grid">
+                <!-- 1. Acoustic Journey -->
+                <div class="offering-item">
+                    <div class="offering-icon"><i class="fas fa-guitar"></i></div>
+                    <h3>The Acoustic Journey</h3>
+                    <p>Intimate, stripped-back, and deeply moving. Felicia performs with her guitar, sharing stories behind the lyrics in a raw storytelling format.</p>
+                    <div class="offering-ideal">Ideal for: Living room concerts, yoga studios, intimate festivals.</div>
+                </div>
+
+                <!-- 2. Full Band -->
+                <div class="offering-item">
+                    <div class="offering-icon"><i class="fas fa-users"></i></div>
+                    <h3>Full Band Experience</h3>
+                    <p>A rich, organic soundscape featuring top-tier folk musicians on double bass, percussion, and accordion. Perfect for larger stages.</p>
+                    <div class="offering-ideal">Ideal for: Folk festivals, outdoor stages, summer concerts.</div>
+                </div>
+
+                <!-- 3. Workshop -->
+                <div class="offering-item">
+                    <div class="offering-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <h3>"Free Your Voice" Workshop</h3>
+                    <p>Beyond performance, Felicia guides groups to overcome the fear of expression, finding their unique sound through improvisation and connection exercises.</p>
+                    <div class="offering-ideal">Ideal for: Retreats, choirs, community centers.</div>
+                </div>
             </div>
         </div>
     </section>
@@ -777,7 +861,7 @@
         <div class="container">
             <div class="contact-wrapper">
                 <h2>Let's Create Together</h2>
-                <p style="margin-bottom: 30px; opacity: 0.9;">Available for concerts, worship leading, and songwriting workshops in 2024.</p>
+                <p style="margin-bottom: 30px; opacity: 0.9;">Available for concerts, festivals, and workshops.</p>
                 <a href="mailto:contact@feliciafalck.com" class="btn btn-outline">Get in Touch</a>
             </div>
         </div>
@@ -802,7 +886,7 @@
                     <ul>
                         <li><a href="#about">About Me</a></li>
                         <li><a href="#music">Music</a></li>
-                        <li><a href="#workshops">Workshops</a></li>
+                        <li><a href="#experiences">Live Experiences</a></li>
                         <li><a href="#resources">Resources</a></li>
                     </ul>
                 </div>
