@@ -6,10 +6,11 @@
     <title>Felicia Falck | Nordic Folk & Medicine Music</title>
     <meta name="description" content="Official website of Felicia Falck. Nordic Folk, Medicine Music, and Vispop from Bohuslän, Sweden.">
     
-    <!-- Google Fonts: Cormorant (Serif) for headings, Montserrat (Sans) for body, Poppins for Brand -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Kept Cormorant and Montserrat, added refined weights -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,21 +23,21 @@
             --bg-card: #FFFFFF;
             --text-main: #2C2C2C;     /* Soft black */
             --text-muted: #666666;
-            --accent-green: #466246;  /* Extracted from HEMSIDA 2.png analysis */
+            --accent-green: #466246;  /* Deep Forest Green */
             --accent-wood: #8B5E3C;   /* Warm Brown */
-            --accent-sand: #E8E6E1;   /* Beige/Sand for footers/bgs */
+            --accent-sand: #E8E6E1;   /* Beige/Sand */
             
             /* Typography */
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Montserrat', sans-serif;
-            --font-brand: 'FeliciaDisplay', sans-serif; /* Custom Font */
+            --font-brand: 'FeliciaDisplay', sans-serif; /* Custom Font Preserved */
             
-            /* Spacing */
+            /* Spacing & Layout */
             --container-width: 1200px;
-            --section-spacing: 100px;
+            --section-spacing: 120px; /* Increased for breathability */
         }
 
-        /* Custom Font Declaration */
+        /* Custom Font Declaration - PRESERVED */
         @font-face {
             font-family: 'FeliciaDisplay';
             src: url('https://use.typekit.net/af/b699ce/00000000000000007735e59f/31/l?subset_id=2&fvd=n4&v=3') format('woff2');
@@ -48,26 +49,31 @@
         /* --- RESET & BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
             font-family: var(--font-sans);
-            line-height: 1.7;
+            line-height: 1.8;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         h1, h2, h3, h4 {
             font-family: var(--font-serif);
             font-weight: 400;
-            line-height: 1.2;
+            line-height: 1.15;
             color: var(--text-main);
         }
 
-        h1 { font-size: clamp(2rem, 4vw, 3.5rem); } /* Slightly reduced global H1 */
-        h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        h3 { font-size: 1.5rem; font-weight: 600; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+        h2 { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; }
 
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        a { text-decoration: none; color: inherit; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
         ul { list-style: none; }
         img { max-width: 100%; height: auto; display: block; }
 
@@ -77,28 +83,60 @@
             padding: 0 24px;
         }
 
+        /* --- ANIMATION UTILITIES --- */
+        /* Elements start hidden and slide up */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered delays for children */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
         /* --- BUTTONS --- */
         .btn {
             display: inline-block;
-            padding: 14px 32px;
+            padding: 16px 36px;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            font-weight: 500;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border-radius: 2px;
-            border: none;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
         .btn-primary {
             background-color: var(--text-main);
             color: #fff;
-            border: 1px solid var(--text-main);
+            border-color: var(--text-main);
         }
+        
         .btn-primary:hover {
             background-color: transparent;
             color: var(--text-main);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Special white hover for hero */
+        .btn-primary.btn-hero:hover {
+            background-color: transparent;
+            color: #fff;
+            border-color: #fff;
         }
 
         .btn-outline {
@@ -106,18 +144,27 @@
             color: #fff;
             border: 1px solid #fff;
         }
+        
         .btn-outline:hover {
             background-color: #fff;
             color: var(--text-main);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
         .btn-text {
             padding: 0;
             color: var(--accent-wood);
-            border-bottom: 1px solid transparent;
+            border-bottom: 1px solid rgba(139, 94, 60, 0.3);
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            text-transform: none;
+            letter-spacing: normal;
         }
         .btn-text:hover {
             border-bottom-color: var(--accent-wood);
+            color: var(--accent-green);
         }
 
         /* --- HEADER --- */
@@ -125,69 +172,78 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(249, 248, 246, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: rgba(249, 248, 246, 0.85); /* Slightly more transparent */
+            backdrop-filter: blur(12px); /* Stronger glass effect */
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 90px;
         }
 
         .logo {
-            font-family: var(--font-brand); /* Using Custom Font */
-            font-size: 2.2rem; /* Increased size for better visibility */
-            letter-spacing: 0.05em;
+            font-family: var(--font-brand);
+            font-size: 2.4rem;
             color: var(--text-main);
             font-weight: 400;
+            text-decoration: none !important;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 45px;
         }
 
         .nav-links a {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             color: var(--text-main);
             position: relative;
+            padding: 5px 0;
+            opacity: 0.8;
         }
+        
+        .nav-links a:hover { opacity: 1; }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
+            bottom: 0;
+            left: 50%;
             width: 0;
             height: 1px;
             background: var(--accent-green);
-            transition: width 0.3s;
+            transition: width 0.3s ease, left 0.3s ease;
         }
 
-        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover::after { width: 100%; left: 0; }
 
         .lang-switch {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
-            border: 1px solid var(--accent-green);
-            padding: 6px 14px;
+            border: 1px solid rgba(44, 44, 44, 0.2);
+            padding: 8px 16px;
             border-radius: 50px;
+            transition: border-color 0.3s;
+            cursor: pointer;
         }
-        .lang-switch span.active { color: var(--accent-wood); font-weight: 700; }
+        .lang-switch:hover { border-color: var(--accent-green); }
+        .lang-switch span { cursor: pointer; }
+        .lang-switch span.active { color: var(--accent-wood); font-weight: 600; }
 
-        /* Mobile Menu Toggle */
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
 
         /* --- HERO --- */
         .hero {
             position: relative;
-            height: 90vh;
+            height: 100vh; /* Full viewport height */
+            min-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -195,17 +251,16 @@
             color: #fff;
             overflow: hidden;
             margin-bottom: var(--section-spacing);
-            padding-top: 80px; /* Offset for fixed header to ensure true visual centering */
         }
 
-        /* NEW: Dark Overlay for text visibility */
+        /* Dark Overlay with Gradient for better text readability */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* 50% opacity black */
-            z-index: 0;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 1;
         }
 
         .hero-bg {
@@ -213,39 +268,63 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             object-fit: cover;
-            z-index: -1;
-            /* Removed brightness filter to let the overlay do the work */
+            z-index: 0;
+            /* Simple parallax scale effect handled in CSS */
+            animation: slowZoom 20s infinite alternate;
+        }
+        
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             padding: 20px;
-            animation: fadeIn 1.5s ease-out;
-            position: relative; /* Ensure content sits above overlay */
-            z-index: 1;
+            position: relative;
+            z-index: 2;
+            margin-top: auto; /* Push content toward bottom */
+            padding-bottom: 80px; /* Space from bottom edge */
         }
 
-        /* NEW: Specific styling for Hero H1 to be minimal and not block face */
+        /* UPDATED HERO SUBTITLE - Minimalist & Elegant */
+        .hero-subtitle {
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.35em; /* Wide, airy tracking */
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            position: relative;
+            padding-top: 25px; /* Space for the line */
+        }
+
+        /* Elegant vertical anchor line */
+        .hero-subtitle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 15px; /* Short, subtle line */
+            background-color: rgba(255,255,255,0.7);
+        }
+
         .hero h1 {
             color: #fff;
-            /* Smaller clamp values for minimal look */
-            font-size: clamp(1.8rem, 3.5vw, 3rem); 
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Softer shadow thanks to dark background */
-            line-height: 1.2;
-            margin-bottom: 2rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-bottom: 2.5rem;
+            font-style: italic; /* Adding italic to Cormorant for elegance */
         }
-
-        .hero-subtitle {
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
+        
+        .hero h1 span {
             display: block;
-            font-weight: 500; 
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Softer shadow */
+            font-style: normal;
         }
 
-        /* NEW: Flex container for Hero Buttons to fix mobile alignment */
         .hero-cta {
             margin-top: 30px;
             display: flex;
@@ -261,22 +340,34 @@
 
         .section-header {
             text-align: center;
-            max-width: 600px;
-            margin: 0 auto 60px;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+        
+        /* Decorative line under headings */
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background-color: var(--accent-green);
+            margin: 20px auto 0;
+            opacity: 0.5;
         }
 
         .section-header p {
             color: var(--text-muted);
             font-style: italic;
             font-family: var(--font-serif);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            margin-top: 20px;
         }
 
         /* --- ABOUT (Split) --- */
         .split-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 100px;
             align-items: center;
         }
 
@@ -287,118 +378,162 @@
         .about-image-wrapper::before {
             content: '';
             position: absolute;
-            top: -20px; left: -20px;
+            top: -30px; left: -30px;
             width: 100%; height: 100%;
             border: 1px solid var(--accent-green);
             z-index: -1;
+            opacity: 0.3;
+            transition: transform 0.5s ease;
+        }
+        
+        /* Hover effect on about image frame */
+        .split-section:hover .about-image-wrapper::before {
+            transform: translate(10px, 10px);
         }
 
         .about-image {
             border-radius: 2px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
             aspect-ratio: 4/5; 
             object-fit: cover;
         }
 
         .quote {
             font-family: var(--font-serif);
-            font-size: 1.4rem;
+            font-size: 1.6rem;
+            line-height: 1.4;
             color: var(--accent-wood);
             border-left: 3px solid var(--accent-green);
-            padding-left: 20px;
-            margin: 30px 0;
+            padding-left: 30px;
+            margin: 40px 0;
             font-style: italic;
         }
 
         /* --- MUSIC / DISCOGRAPHY --- */
         .music-grid {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
             justify-content: center;
-            gap: 30px;
         }
 
         .album-card {
             background: var(--bg-card);
-            padding: 20px;
+            padding: 25px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-            transition: transform 0.3s;
-            flex: 1 1 300px; /* Flex-basis 300px, can grow and shrink */
-            max-width: 380px; /* Prevent cards from stretching too wide on last row */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Softer shadow */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-radius: 4px; /* Slight rounding */
         }
 
-        .album-card:hover { transform: translateY(-5px); }
+        .album-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
 
         .album-art {
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border-radius: 2px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .album-meta { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+        .album-meta { 
+            font-size: 0.7rem; 
+            color: var(--accent-green); 
+            text-transform: uppercase; 
+            letter-spacing: 0.15em; 
+            margin-bottom: 10px; 
+            font-weight: 600;
+        }
 
-        /* --- OFFERINGS (NEW SECTION) --- */
+        .album-card h3 {
+            margin-bottom: 5px;
+        }
+
+        /* --- OFFERINGS --- */
         .offerings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .offering-item {
             background: #fff;
-            padding: 40px 30px;
-            border: 1px solid #eee;
-            transition: border-color 0.3s;
+            padding: 50px 40px;
+            border: 1px solid #f0f0f0;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle colored accent on top */
+        .offering-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--accent-wood);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .offering-item:hover {
-            border-color: var(--accent-green);
+            border-color: transparent;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+            transform: translateY(-5px);
+        }
+        
+        .offering-item:hover::after {
+            transform: scaleX(1);
         }
 
         .offering-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--accent-wood);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            opacity: 0.8;
         }
 
         .offering-item h3 {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             margin-bottom: 15px;
         }
 
         .offering-item p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            line-height: 1.8;
         }
 
         .offering-ideal {
             font-size: 0.85rem;
             color: var(--text-main);
-            font-weight: 500;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
+            font-weight: 600;
+            background: var(--bg-body);
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 4px;
         }
 
-        /* --- RESOURCES / CHORDS (The SEO Hub) --- */
+        /* --- RESOURCES / CHORDS --- */
         .resources-section {
             background-color: var(--accent-sand);
-            padding: 100px 0;
+            padding: 120px 0;
             position: relative;
             background-image: url('https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/d1a237d0-43fc-45d7-ad1c-971d55007348/Long+picture.jpg?format=2500w');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
         }
         
         .resources-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(232, 230, 225, 0.92); /* Sand color with high opacity */
+            background: rgba(232, 230, 225, 0.94); /* Very opaque to keep it clean */
         }
 
         .resources-content {
@@ -410,8 +545,8 @@
             background: #fff;
             max-width: 800px;
             margin: 0 auto;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
             overflow: hidden;
         }
 
@@ -419,35 +554,46 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 30px;
-            border-bottom: 1px solid #eee;
-            transition: background 0.2s;
+            padding: 25px 35px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.3s;
         }
 
         .resource-item:last-child { border-bottom: none; }
-        .resource-item:hover { background-color: #fcfcfc; }
+        .resource-item:hover { background-color: #fafafa; }
 
-        .song-title { font-weight: 600; color: var(--text-main); }
-        .song-meta { font-size: 0.85rem; color: var(--text-muted); }
+        .song-title { font-weight: 600; font-size: 1.1rem; color: var(--text-main); margin-bottom: 4px; }
+        .song-meta { font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-serif); font-style: italic;}
         
         .download-btn {
             color: var(--accent-green);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            padding: 8px 16px;
+            border: 1px solid rgba(70, 98, 70, 0.2);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: var(--accent-green);
+            color: #fff;
+            border-color: var(--accent-green);
         }
 
-        /* --- GALLERY (Instagram Style) --- */
+        /* --- GALLERY --- */
         .gallery-section {
-            padding: 60px 0;
+            padding: 80px 0;
             background-color: #fff;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
+            gap: 2px; /* Tighter gap for modern look */
         }
 
         .gallery-item {
@@ -463,82 +609,100 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
             display: block;
         }
 
         .gallery-item:hover img {
-            transform: scale(1.05);
-            opacity: 0.95;
+            transform: scale(1.1);
+            opacity: 0.9;
         }
 
+        /* Video Icon Styling */
         .video-icon {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
+            width: 32px; height: 32px;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M24,18 L48,32 L24,46 Z' fill='white'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
             pointer-events: none;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
+        
+        .gallery-item:hover .video-icon { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
 
         /* --- CONTACT --- */
         .contact-wrapper {
             background-color: var(--accent-green);
             color: #fff;
-            padding: 80px;
+            padding: 100px 40px;
             text-align: center;
-            border-radius: 4px;
+            border-radius: 8px;
+            background-image: linear-gradient(rgba(70, 98, 70, 0.9), rgba(70, 98, 70, 0.9)), url('https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/dc9fa139-8de5-453f-bb7f-4dfdb7de0f9f/HEMSIDA+2.png');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 20px 50px rgba(70, 98, 70, 0.2);
         }
 
-        .contact-wrapper h2, .contact-wrapper p { color: #fff; }
+        .contact-wrapper h2 { color: #fff; margin-bottom: 15px; }
+        .contact-wrapper p { color: rgba(255,255,255,0.9); font-size: 1.2rem; }
 
         /* --- FOOTER --- */
         footer {
-            background-color: #222;
+            background-color: #1a1a1a;
             color: #999;
-            padding: 60px 0 20px;
+            padding: 80px 0 30px;
             font-size: 0.9rem;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
         }
 
-        .footer-col h4 { color: #fff; font-size: 1rem; margin-bottom: 20px; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--font-sans); }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col a:hover { color: #fff; }
-
-        .social-icons a { margin-right: 15px; font-size: 1.2rem; }
-
-        /* --- ANIMATIONS --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .footer-col h4 { 
+            color: #fff; 
+            font-size: 0.9rem; 
+            margin-bottom: 25px; 
+            letter-spacing: 0.2em; 
+            text-transform: uppercase; 
+            font-family: var(--font-sans); 
         }
+        
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a:hover { color: #fff; padding-left: 5px; } /* Tiny slide effect */
+
+        .social-icons a { 
+            margin-right: 20px; 
+            font-size: 1.2rem; 
+            transition: color 0.3s;
+        }
+        .social-icons a:hover { color: #fff; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) { 
             .gallery-grid { grid-template-columns: repeat(3, 1fr); } 
+            .split-section { gap: 50px; }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
+            h1 { font-size: 2.8rem; }
             .nav-links { display: none; }
             .menu-toggle { display: block; }
-            .split-section { grid-template-columns: 1fr; gap: 40px; }
-            .contact-wrapper { padding: 40px 20px; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; } 
             
-            /* Fix button stacking on mobile */
+            .split-section { grid-template-columns: 1fr; gap: 40px; }
+            .about-image-wrapper { order: -1; } /* Image first on mobile */
+            
+            .contact-wrapper { padding: 60px 20px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); } 
+            
             .hero-cta {
                 flex-direction: column;
                 align-items: center;
@@ -583,12 +747,12 @@
     <section class="hero">
         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/dc9fa139-8de5-453f-bb7f-4dfdb7de0f9f/HEMSIDA+2.png" alt="Felicia Falck Background" class="hero-bg">
         
-        <div class="hero-content">
+        <div class="hero-content reveal-on-scroll">
             <span class="hero-subtitle">Singer-Songwriter | Medicine Music | Vispop</span>
             <h1>Nordic Folk & <br>Medicine Music <br>from Bohuslän</h1>
             <div class="hero-cta">
-                <a href="#music" class="btn btn-outline">Listen Now</a>
-                <a href="#contact" class="btn btn-primary" style="background: white; color: black;">Book Event</a>
+                <a href="#music" class="btn btn-primary btn-hero" style="background: white; color: black; border-color: white;">Listen Now</a>
+                <a href="#contact" class="btn btn-outline">Book Event</a>
             </div>
         </div>
     </section>
@@ -597,15 +761,18 @@
     <section id="about">
         <div class="container">
             <div class="split-section">
-                <div class="about-text">
-                    <h2>Songs from the Granite & the Heart</h2>
+                <div class="about-text reveal-on-scroll">
+                    <div class="section-header" style="text-align: left; margin: 0 0 40px;">
+                         <h2>Songs from the Granite<br>& the Heart</h2>
+                    </div>
                     <p class="quote">"Music that bridges the gap between Nordic melancholy and the warmth of Latin American rhythms."</p>
                     <p>Felicia Falck is a Swedish singer-songwriter known for her crystalline voice and heartfelt storytelling. Rooted in the granite landscapes of North Bohuslän, she crafts music that transforms the delicate and the raw into something that touches the soul.</p>
-                    <p>Her sound is born from a deep connection to nature and her travels in Colombia, weaving together the tradition of Swedish "Visor" with the spiritual depth of medicine music. Whether performing intimate acoustic sets or facilitating vocal workshops, Felicia creates a space of healing and authentic expression.</p>
                     <br>
-                    <a href="#" class="btn-text">Read full biography <i class="fas fa-arrow-right"></i></a>
+                    <p>Her sound is born from a deep connection to nature and her travels in Colombia, weaving together the tradition of Swedish "Visor" with the spiritual depth of medicine music. Whether performing intimate acoustic sets or facilitating vocal workshops, Felicia creates a space of healing and authentic expression.</p>
+                    <br><br>
+                    <a href="#" class="btn-text">Read full biography <i class="fas fa-arrow-right" style="font-size: 0.8em; margin-left: 5px;"></i></a>
                 </div>
-                <div class="about-image-wrapper">
+                <div class="about-image-wrapper reveal-on-scroll delay-200">
                     <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/9f04b767-23ec-4a0e-8698-f2a5f8ebccae/URKRAFTEN+FOTO.jpg?format=1500w" alt="Felicia Falck Portrait" class="about-image">
                 </div>
             </div>
@@ -615,84 +782,83 @@
     <!-- Discography -->
     <section id="music">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <h2>Discography</h2>
                 <p>From acoustic folk to ecstatic dance remixes.</p>
             </div>
 
             <div class="music-grid">
-                <!-- 1. Sweet Love (NEW - First) -->
-                <article class="album-card">
+                <!-- 1. Sweet Love -->
+                <article class="album-card reveal-on-scroll delay-100">
                     <img src="https://scontent-cph2-1.cdninstagram.com/v/t51.82787-15/611635911_18549766759050586_1655974182429996079_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ig_cache_key=MzgwNjIyMDg2NzkxMTM0ODI5Mw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=ENWlPn4dtQ8Q7kNvwFAG4cB&_nc_oc=AdmjyoB3B18wz6fuySiOAH83D3VxoLsp9cNYlZPrsOwEg98Win4rBprg9rSogYqtms7-YkzUWPkHwOyhenzUwu3g&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-cph2-1.cdninstagram.com&_nc_gid=Ro9w_4KutAcblJQYwLfnzQ&oh=00_AfrhIItVh8tlnM3tNK2Ow8M-LFYsgTU8lD6FkoC9MGpa7g&oe=698085A4" alt="Sweet Love" class="album-art">
                     <div class="album-meta">Single • 2024</div>
                     <h3>Sweet Love</h3>
-                    <p style="font-size: 0.8rem; margin-top: 5px;">feat. Mia Maya</p>
-                    <div style="margin-top: 15px;">
+                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--text-muted);">feat. Mia Maya</p>
+                    <div style="margin-top: 20px;">
                         <a href="https://open.spotify.com/album/0mFGLL0HRL9fVKdBvgY6lY?si=3PXn2xMvQJ6oBX9NytQXXQ" target="_blank" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
 
-                <!-- 2. Gotlandvisan (NEW) -->
-                <article class="album-card">
+                <!-- 2. Gotlandvisan -->
+                <article class="album-card reveal-on-scroll delay-200">
                     <img src="https://i.scdn.co/image/ab67616d00001e0287a9a6cb832eaf19ebdc620a" alt="Gotlandvisan" class="album-art">
                     <div class="album-meta">Single</div>
                     <h3>Gotlandvisan</h3>
-                    <div style="margin-top: 15px;">
+                    <div style="margin-top: 20px;">
                         <a href="https://open.spotify.com/album/4GgaqkgKdmNh7gjEhHCS13?si=kgAnzeinRnaFh_ZXhtvNjQ" target="_blank" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
 
-                <!-- 3. Together (NEW) -->
-                <article class="album-card">
-                    <!-- Placeholder using another atmospheric gallery image since specific artwork wasn't provided -->
+                <!-- 3. Together -->
+                <article class="album-card reveal-on-scroll delay-300">
                     <img src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/73/64/24/73642473-c713-a2f3-3dd5-37f7238d55ed/artwork.jpg/592x592bf.webp" alt="Together Single" class="album-art">
                     <div class="album-meta">Single</div>
                     <h3>Together</h3>
-                    <p style="font-size: 0.8rem; margin-top: 5px;">feat. Natan Rabin</p>
-                    <div style="margin-top: 15px;">
+                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--text-muted);">feat. Natan Rabin</p>
+                    <div style="margin-top: 20px;">
                         <a href="#" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
 
                 <!-- 4. Come Closer -->
-                <article class="album-card">
+                <article class="album-card reveal-on-scroll delay-100">
                     <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/9f04b767-23ec-4a0e-8698-f2a5f8ebccae/URKRAFTEN+FOTO.jpg?format=750w" alt="Come Closer" class="album-art">
                     <div class="album-meta">Single • Remix</div>
                     <h3>Come Closer</h3>
-                    <p style="font-size: 0.8rem; margin-top: 5px;">Mose Remix</p>
-                    <div style="margin-top: 15px;">
+                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--text-muted);">Mose Remix</p>
+                    <div style="margin-top: 20px;">
                         <a href="https://open.spotify.com/album/68PzyDEHoeO5kvdf0r1kY4?si=XfJYDmDlSOWWuOa21o-rXQ" target="_blank" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
 
                 <!-- 5. Uppe i Norden -->
-                <article class="album-card">
+                <article class="album-card reveal-on-scroll delay-200">
                     <img src="https://brannovardshus.se/wp-content/uploads/2020/10/DSC_0754-2-kopia-768x513.jpg" alt="Uppe i Norden" class="album-art">
                     <div class="album-meta">Album • 2020</div>
                     <h3>Uppe i Norden</h3>
-                    <div style="margin-top: 15px;">
+                    <div style="margin-top: 20px;">
                         <a href="https://open.spotify.com/album/4DK8xzHsjkYPXsmgAU73Fn?si=jbDFZgz8QeuDvs8_k_oSaQ" target="_blank" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
 
                 <!-- 6. Dreaming -->
-                <article class="album-card">
+                <article class="album-card reveal-on-scroll delay-300">
                     <img src="https://image-cdn-fa.spotifycdn.com/image/ab6761610000f178ce4ae090ef5985cf7259a2e0" alt="Dreaming EP" class="album-art">
                     <div class="album-meta">EP • 2019</div>
                     <h3>Dreaming</h3>
-                    <p style="font-size: 0.8rem; margin-top: 5px;">Produced by Marcus Berg</p>
-                    <div style="margin-top: 15px;">
+                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--text-muted);">Produced by Marcus Berg</p>
+                    <div style="margin-top: 20px;">
                         <a href="https://open.spotify.com/album/4mNA34R1GT4YutMNniDGn6?si=B7tGCmeWROSe1HBYc5E_dg" target="_blank" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
-
-                <!-- 7. Keepers of the Inner Fire (NEW - Centered on last row) -->
-                <article class="album-card">
+                
+                 <!-- 7. Keepers of the Inner Fire -->
+                 <article class="album-card reveal-on-scroll delay-100">
                     <img src="https://i.scdn.co/image/ab67616d00001e0233273f148c8a5fdf4c6f982b" alt="Keepers of the Inner Fire" class="album-art">
                     <div class="album-meta">Album</div>
                     <h3>Keepers of the Inner Fire</h3>
-                    <p style="font-size: 0.8rem; margin-top: 5px;">with Amor Reluciente</p>
-                    <div style="margin-top: 15px;">
+                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--text-muted);">with Amor Reluciente</p>
+                    <div style="margin-top: 20px;">
                         <a href="https://open.spotify.com/album/5X1T3HqJQAfr6Rk38mHOy9?si=1I89qB64THqlSZ36Bgom-A" target="_blank" class="btn-text">Stream on Spotify</a>
                     </div>
                 </article>
@@ -700,17 +866,17 @@
         </div>
     </section>
 
-    <!-- Live Experiences & Workshops (NEW SECTION from EPK) -->
+    <!-- Live Experiences & Workshops -->
     <section id="experiences" style="background-color: #fff;">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <h2>Live Experiences</h2>
                 <p>Performances and workshops for festivals, studios, and cultural centers.</p>
             </div>
 
             <div class="offerings-grid">
                 <!-- 1. Acoustic Journey -->
-                <div class="offering-item">
+                <div class="offering-item reveal-on-scroll delay-100">
                     <div class="offering-icon"><i class="fas fa-guitar"></i></div>
                     <h3>The Acoustic Journey</h3>
                     <p>Intimate, stripped-back, and deeply moving. Felicia performs with her guitar, sharing stories behind the lyrics in a raw storytelling format.</p>
@@ -718,7 +884,7 @@
                 </div>
 
                 <!-- 2. Full Band -->
-                <div class="offering-item">
+                <div class="offering-item reveal-on-scroll delay-200">
                     <div class="offering-icon"><i class="fas fa-users"></i></div>
                     <h3>Full Band Experience</h3>
                     <p>A rich, organic soundscape featuring top-tier folk musicians on double bass, percussion, and accordion. Perfect for larger stages.</p>
@@ -726,7 +892,7 @@
                 </div>
 
                 <!-- 3. Workshop -->
-                <div class="offering-item">
+                <div class="offering-item reveal-on-scroll delay-300">
                     <div class="offering-icon"><i class="fas fa-microphone-alt"></i></div>
                     <h3>"Free Your Voice" Workshop</h3>
                     <p>Beyond performance, Felicia guides groups to overcome the fear of expression, finding their unique sound through improvisation and connection exercises.</p>
@@ -740,12 +906,12 @@
     <section id="resources" class="resources-section">
         <div class="resources-overlay"></div>
         <div class="container resources-content">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <h2>Lyrics & Chords</h2>
                 <p>Resources for worship leaders and musicians. Free to download.</p>
             </div>
 
-            <div class="resource-list">
+            <div class="resource-list reveal-on-scroll delay-100">
                 <!-- Item 1 -->
                 <div class="resource-item">
                     <div>
@@ -782,7 +948,7 @@
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 40px;">
+            <div style="text-align: center; margin-top: 50px;" class="reveal-on-scroll">
                 <a href="#" class="btn btn-primary">View Full Library</a>
             </div>
         </div>
@@ -791,180 +957,140 @@
     <!-- Gallery / Instagram -->
     <section id="gallery" class="gallery-section">
         <div class="container" style="max-width: 1400px;">
-            <div class="section-header">
-                <h2 style="font-size: 1.8rem; letter-spacing: 0.1em; text-transform: uppercase;">@feliciafalck</h2>
+            <div class="section-header reveal-on-scroll">
+                <h2 style="font-size: 1.8rem; letter-spacing: 0.15em; text-transform: uppercase;">@feliciafalck</h2>
                 <p>Follow the journey on Instagram</p>
             </div>
 
-            <div class="gallery-grid">
-                
-                <!-- 1. Reel (Video) -->
+            <div class="gallery-grid reveal-on-scroll">
+                <!-- Gallery Items (No changes to content, just structure for CSS grid) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DUBxG27jT-O/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1769550892831-2QE4TYG63T75E2CGQ6M0/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 2. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DT3WNk0DdWc/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1769208482748-ULLLWLLH6NLYJSM75DXT/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 3. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DTscHLIiNz9/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1768842073648-9UITO5JV72WBAWJLKDN0/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 4. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DTTDlGsCC8Y/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1767985470668-X11QA9XEK5XS75PQT9W4/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 5. Image (Standard) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/p/DTSaboYCNJZ/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1767958026151-EGYOWS61NZMS09ZP1S6B/image-asset.jpeg" alt="Sweet love is out now">
                     </a>
                 </div>
-
-                <!-- 6. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DShYm4uEdsu/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1766312620292-EYMDW9AYKX72BEFVH2DX/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 7. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DSVopaIDWml/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1765920858072-G2C4YIEBHNHVBV0DQNB0/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 8. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DSFmaGkCNUB/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1765382545045-RUEKKPVP71800SXYGJ2U/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 9. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DRdAMg2DeqI/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1764019709730-1T2GVMW0L6FMRVHSH8WD/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 10. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DRPDtLmiJqN/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1763551972076-LUU7GZ19BR566250DB1E/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 11. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DRFx4VpjWML/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1763242222813-AQWCERDN16P32RZN6NWR/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 12. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DQ__nYXCK_d/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1763047777128-8W4KACUGVUZ42I0DEHDS/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 13. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DQ7UOcxjTpc/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1762892570713-C9FGV5260P6277AK94N7/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 14. Image (Standard) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/p/DQE6hbHCOiA/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1761065047910-Y05TLUGQPR979Q2RVZQO/image-asset.jpeg" alt="The Creative Soul 1:1 Sessions">
                     </a>
                 </div>
-
-                <!-- 15. Image (Standard) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/p/DQEa2eqCKQe/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1761050002782-OTFWUKA67PQAHIQWSQJX/image-asset.jpeg" alt="Concert in Onderdijk">
                     </a>
                 </div>
-
-                <!-- 16. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DPzMRNzDZUq/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1760473504212-WI81WVW6AV2TS2Z6GRVS/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 17. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DPgg94zCMbi/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1759847087369-3H8G18NHLD50039KFKDT/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 18. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DPY4U6piG7i/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1759596597484-AO4NCAPG6RON42OCLIDY/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
-                <!-- 19. Image (Standard) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/p/DON8L45iG0U/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1757074428659-2TBJPITONSRY64H18S6W/image-asset.jpeg" alt="Get It Out Song">
                     </a>
                 </div>
-
-                <!-- 20. Reel (Video) -->
                 <div class="gallery-item">
                     <a href="https://www.instagram.com/reel/DOGrjk1iDkd/" target="_blank">
                         <img src="https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/1756836546446-8XJ71JK6PPD4JG9HBK7L/image-asset.jpeg" alt="Instagram Reel">
                         <div class="video-icon"></div>
                     </a>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- Contact CTA -->
-    <section id="contact">
+    <section id="contact" class="reveal-on-scroll">
         <div class="container">
             <div class="contact-wrapper">
                 <h2>Let's Create Together</h2>
                 <p style="margin-bottom: 30px; opacity: 0.9;">Available for concerts, festivals, and workshops.</p>
-                <a href="mailto:contact@feliciafalck.com" class="btn btn-outline">Get in Touch</a>
+                <a href="mailto:contact@feliciafalck.com" class="btn btn-outline" style="border-width: 1px; padding: 15px 40px;">Get in Touch</a>
             </div>
         </div>
     </section>
@@ -976,7 +1102,7 @@
                 <div class="footer-col">
                     <h4>Felicia Falck</h4>
                     <p>Singer-Songwriter & Worship Leader based in Sweden.</p>
-                    <div class="social-icons" style="margin-top: 20px;">
+                    <div class="social-icons" style="margin-top: 25px;">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-spotify"></i></a>
@@ -996,19 +1122,19 @@
                     <h4>Newsletter</h4>
                     <p style="font-size: 0.8rem; margin-bottom: 15px;">Join the journey. Updates on new music and events.</p>
                     <form onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
-                        <input type="email" placeholder="Your email address" style="padding: 10px; border: none; width: 100%; margin-bottom: 10px;">
-                        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 0.7rem; padding: 10px;">Subscribe</button>
+                        <input type="email" placeholder="Your email address" style="padding: 12px; border: none; width: 100%; margin-bottom: 10px; background: #333; color: #fff;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 0.7rem; padding: 12px; border: 1px solid #fff; background: transparent; color: #fff;">Subscribe</button>
                     </form>
                 </div>
             </div>
-            <div style="border-top: 1px solid #333; padding-top: 20px; text-align: center; font-size: 0.75rem;">
+            <div style="border-top: 1px solid #333; padding-top: 30px; text-align: center; font-size: 0.75rem;">
                 <p>&copy; 2024 Felicia Falck. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Simple script for smooth scrolling behavior for demo purposes
+        // Smooth Scroll Logic
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1029,13 +1155,33 @@
                 navLinks.style.display = 'flex';
                 navLinks.style.flexDirection = 'column';
                 navLinks.style.position = 'absolute';
-                navLinks.style.top = '80px';
+                navLinks.style.top = '90px';
                 navLinks.style.left = '0';
                 navLinks.style.width = '100%';
                 navLinks.style.background = '#F9F8F6';
-                navLinks.style.padding = '20px';
-                navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+                navLinks.style.padding = '30px';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
             }
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
+            observer.observe(element);
         });
     </script>
 
