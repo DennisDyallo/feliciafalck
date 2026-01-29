@@ -245,12 +245,13 @@
             height: 100vh; /* Full viewport height */
             min-height: 600px;
             display: flex;
-            align-items: center;
+            align-items: flex-end; /* Align content to bottom */
             justify-content: center;
             text-align: center;
             color: #fff;
             overflow: hidden;
             margin-bottom: var(--section-spacing);
+            padding-bottom: 14vh; /* Push content up 14% of view height from bottom */
         }
 
         /* Dark Overlay with Gradient for better text readability */
@@ -283,8 +284,7 @@
             padding: 20px;
             position: relative;
             z-index: 2;
-            margin-top: auto; /* Push content toward bottom */
-            padding-bottom: 80px; /* Space from bottom edge */
+            /* Removed margin/padding hacks, relying on parent flex alignment now */
         }
 
         /* UPDATED HERO SUBTITLE - Minimalist & Elegant */
@@ -298,20 +298,10 @@
             color: rgba(255, 255, 255, 0.95);
             text-shadow: 0 2px 8px rgba(0,0,0,0.4);
             position: relative;
-            padding-top: 25px; /* Space for the line */
+            /* Removed padding-top since we are removing the line */
         }
 
-        /* Elegant vertical anchor line */
-        .hero-subtitle::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 15px; /* Short, subtle line */
-            background-color: rgba(255,255,255,0.7);
-        }
+        /* Removed .hero-subtitle::before vertical line */
 
         .hero h1 {
             color: #fff;
@@ -411,10 +401,10 @@
 
         /* --- MUSIC / DISCOGRAPHY --- */
         .music-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
+            gap: 40px;
         }
 
         .album-card {
@@ -424,6 +414,11 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.03); /* Softer shadow */
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             border-radius: 4px; /* Slight rounding */
+            
+            /* Flex sizing to mimic grid but allow centering */
+            flex: 1 1 280px;
+            max-width: 340px; /* Prevent cards from getting too wide on single rows */
+            width: 100%;
         }
 
         .album-card:hover {
