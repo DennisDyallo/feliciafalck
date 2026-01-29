@@ -205,7 +205,7 @@
         /* Ensure Logo is White & Readable */
         .logo {
             font-family: var(--font-brand);
-            font-size: 2.4rem;
+            font-size: 3.36rem;
             color: #fff;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             font-weight: 400;
@@ -317,23 +317,25 @@
         .hero-subtitle {
             display: inline-block;
             text-transform: uppercase;
-            letter-spacing: 0.35em; /* Wide, airy tracking */
+            letter-spacing: 0.35em;
             font-size: 0.8rem;
             margin-bottom: 2rem;
-            font-weight: 500;
+            font-weight: 600; /* Bumped to cut through busy backgrounds */
             color: rgba(255, 255, 255, 0.95);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8); /* Tight shadow for crisp small text */
             position: relative;
-            /* Removed padding-top since we are removing the line */
         }
 
         /* Removed .hero-subtitle::before vertical line */
 
         .hero h1 {
             color: #fff;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            /* Layered shadow: tight for edge definition + wide for localized vignetting */
+            text-shadow: 
+                0 1px 3px rgba(0,0,0,0.6), 
+                0 4px 20px rgba(0,0,0,0.45);
             margin-bottom: 2.5rem;
-            font-style: italic; /* Adding italic to Cormorant for elegance */
+            font-style: italic;
         }
         
         .hero h1 span {
@@ -1190,9 +1192,9 @@
                 navLinks.style.top = '90px';
                 navLinks.style.left = '0';
                 navLinks.style.width = '100%';
-                navLinks.style.background = '#F9F8F6';
+                navLinks.style.background = '#2C2C2C';
                 navLinks.style.padding = '30px';
-                navLinks.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                navLinks.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
             }
         });
 
