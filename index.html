@@ -239,9 +239,22 @@
             color: var(--text-main);
             text-shadow: none;
         }
+        header.scrolled .nav-links a:hover {
+            opacity: 1;
+            color: var(--accent-green);
+        }
+        header.scrolled .nav-links a::after {
+            background: var(--accent-green);
+        }
         header.scrolled .lang-switch {
             color: var(--text-main);
             border-color: rgba(0,0,0,0.2);
+        }
+        header.scrolled .lang-switch:hover {
+            border-color: var(--accent-green);
+        }
+        header.scrolled .lang-switch span.active {
+            color: var(--accent-wood);
         }
 
         nav {
@@ -259,6 +272,7 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             font-weight: 400;
             text-decoration: none !important;
+            line-height: 1;
         }
 
         .nav-links {
