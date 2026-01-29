@@ -167,16 +167,32 @@
             color: var(--accent-green);
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (Cinematic Style) --- */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(249, 248, 246, 0.85); /* Slightly more transparent */
-            backdrop-filter: blur(12px); /* Stronger glass effect */
+            /* Dark gradient fading to transparent. No "fog" effect. */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%);
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.03);
-            transition: transform 0.3s ease;
+            border-bottom: none;
+            transition: all 0.4s ease;
+        }
+
+        /* State when user scrolls down */
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        header.scrolled .logo,
+        header.scrolled .nav-links a, 
+        header.scrolled .menu-toggle {
+            color: var(--text-main);
+            text-shadow: none;
+        }
+        header.scrolled .lang-switch {
+            color: var(--text-main);
+            border-color: rgba(0,0,0,0.2);
         }
 
         nav {
@@ -186,10 +202,12 @@
             height: 90px;
         }
 
+        /* Ensure Logo is White & Readable */
         .logo {
             font-family: var(--font-brand);
             font-size: 2.4rem;
-            color: var(--text-main);
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             font-weight: 400;
             text-decoration: none !important;
         }
@@ -199,18 +217,22 @@
             gap: 45px;
         }
 
+        /* Ensure Nav Links are White & Readable */
         .nav-links a {
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--text-main);
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
             position: relative;
             padding: 5px 0;
-            opacity: 0.8;
+            opacity: 0.9;
+            font-weight: 500;
         }
         
         .nav-links a:hover { opacity: 1; }
 
+        /* The underline effect (white for better contrast) */
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -218,49 +240,52 @@
             left: 50%;
             width: 0;
             height: 1px;
-            background: var(--accent-green);
+            background: #fff;
             transition: width 0.3s ease, left 0.3s ease;
         }
 
         .nav-links a:hover::after { width: 100%; left: 0; }
 
+        /* Language Switcher White Mode */
         .lang-switch {
             font-size: 0.75rem;
             font-weight: 500;
-            border: 1px solid rgba(44, 44, 44, 0.2);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 8px 16px;
             border-radius: 50px;
             transition: border-color 0.3s;
             cursor: pointer;
         }
-        .lang-switch:hover { border-color: var(--accent-green); }
+        .lang-switch:hover { border-color: #fff; }
         .lang-switch span { cursor: pointer; }
-        .lang-switch span.active { color: var(--accent-wood); font-weight: 600; }
+        .lang-switch span.active { color: #fff; font-weight: 700; }
 
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+        /* Mobile Menu Icon White */
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
 
         /* --- HERO --- */
         .hero {
             position: relative;
-            height: 100vh; /* Full viewport height */
+            height: 100vh;
             min-height: 600px;
             display: flex;
-            align-items: flex-end; /* Align content to bottom */
-            justify-content: center;
-            text-align: center;
+            align-items: flex-end;
+            justify-content: flex-start; /* Pushes text to the LEFT */
+            text-align: left; /* Aligns text inside the box to the LEFT */
             color: #fff;
             overflow: hidden;
             margin-bottom: var(--section-spacing);
-            padding-bottom: 14vh; /* Push content up 14% of view height from bottom */
+            padding-bottom: 10vh;
         }
 
-        /* Dark Overlay with Gradient for better text readability */
+        /* Dark Overlay - Clear at top, dark at bottom where text sits */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.8) 100%);
             z-index: 1;
         }
 
@@ -280,11 +305,11 @@
         }
 
         .hero-content {
-            max-width: 900px;
-            padding: 20px;
+            max-width: 800px;
+            padding: 0 40px;
             position: relative;
             z-index: 2;
-            /* Removed margin/padding hacks, relying on parent flex alignment now */
+            width: 100%;
         }
 
         /* UPDATED HERO SUBTITLE - Minimalist & Elegant */
@@ -318,7 +343,7 @@
         .hero-cta {
             margin-top: 30px;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 20px;
             flex-wrap: wrap;
         }
@@ -698,9 +723,15 @@
             .contact-wrapper { padding: 60px 20px; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); } 
             
+            .hero {
+                justify-content: center;
+                text-align: center;
+            }
+            
             .hero-cta {
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 gap: 15px;
             }
             
@@ -708,6 +739,11 @@
                 width: 100%;
                 max-width: 280px;
                 text-align: center;
+            }
+            
+            /* Slightly darker gradient on mobile since text is over image more */
+            .hero::before {
+                background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.6) 100%);
             }
         }
     </style>
@@ -1177,6 +1213,19 @@
 
         document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
             observer.observe(element);
+        });
+
+        // Change header style on scroll
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const header = document.querySelector('header');
+                    header.classList.toggle('scrolled', window.scrollY > 100);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
     </script>
 
