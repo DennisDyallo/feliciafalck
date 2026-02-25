@@ -606,71 +606,6 @@
             border-radius: 4px;
         }
 
-        /* --- RESOURCES / CHORDS --- */
-        .resources-section {
-            background-color: var(--accent-sand);
-            padding: 120px 0;
-            position: relative;
-            background-image: url('https://images.squarespace-cdn.com/content/v1/622dfd29cdc9856ebf23608c/d1a237d0-43fc-45d7-ad1c-971d55007348/Long+picture.jpg?format=2500w');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        
-        .resources-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(232, 230, 225, 0.94); /* Very opaque to keep it clean */
-        }
-
-        .resources-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .resource-list {
-            background: #fff;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 8px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-            overflow: hidden;
-        }
-
-        .resource-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 35px;
-            border-bottom: 1px solid #f0f0f0;
-            transition: background 0.3s;
-        }
-
-        .resource-item:last-child { border-bottom: none; }
-        .resource-item:hover { background-color: #fafafa; }
-
-        .song-title { font-weight: 600; font-size: 1.1rem; color: var(--text-main); margin-bottom: 4px; }
-        .song-meta { font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-serif); font-style: italic;}
-        
-        .download-btn {
-            color: var(--accent-green);
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 16px;
-            border: 1px solid rgba(70, 98, 70, 0.2);
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-        
-        .download-btn:hover {
-            background: var(--accent-green);
-            color: #fff;
-            border-color: var(--accent-green);
-        }
-
         /* --- GALLERY --- */
         .gallery-section {
             padding: 80px 0;
@@ -999,58 +934,6 @@
                     <p>Personal sessions either online or in person where Felicia helps you unlock your authentic voice. A safe, nurturing space to explore expression, build confidence, and connect with your inner creativity.</p>
                     <div class="offering-ideal">Ideal for: Anyone seeking personal vocal and creative development.</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources / SEO Magnet -->
-    <section id="resources" class="resources-section">
-        <div class="resources-overlay"></div>
-        <div class="container resources-content">
-            <div class="section-header reveal-on-scroll">
-                <h2>Lyrics & Chords</h2>
-                <p>Resources for worship leaders and musicians. Free to download.</p>
-            </div>
-
-            <div class="resource-list reveal-on-scroll delay-100">
-                <!-- Item 1 -->
-                <div class="resource-item">
-                    <div>
-                        <div class="song-title">Hjärtat vet (The Heart Knows)</div>
-                        <div class="song-meta">Key: D Major | Swedish</div>
-                    </div>
-                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> PDF Chord Chart</a>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="resource-item">
-                    <div>
-                        <div class="song-title">Come to the Water</div>
-                        <div class="song-meta">Key: G Major | English</div>
-                    </div>
-                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> PDF Chord Chart</a>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="resource-item">
-                    <div>
-                        <div class="song-title">Vila i dig</div>
-                        <div class="song-meta">Key: C Major | Swedish</div>
-                    </div>
-                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> PDF Chord Chart</a>
-                </div>
-                 <!-- Item 4 -->
-                 <div class="resource-item">
-                    <div>
-                        <div class="song-title">Morning Light</div>
-                        <div class="song-meta">Key: E Major | English</div>
-                    </div>
-                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> PDF Chord Chart</a>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 50px;" class="reveal-on-scroll">
-                <a href="#" class="btn btn-primary">View Full Library</a>
             </div>
         </div>
     </section>
